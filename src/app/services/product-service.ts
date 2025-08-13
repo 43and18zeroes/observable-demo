@@ -12,7 +12,7 @@ export interface Product {
 @Injectable({
   providedIn: 'root',
 })
-export class ProductServiceTs {
+export class ProductService {
   private http = inject(HttpClient);
   private cache = new Map<string, Product[]>();
 
