@@ -2,10 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductService } from './services/product-service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { BehaviorSubject, catchError, combineLatest, debounceTime, distinctUntilChanged, map, of, shareReplay, startWith, switchMap, tap } from 'rxjs';
+
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  stock: number;
+}
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
