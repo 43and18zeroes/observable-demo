@@ -1,40 +1,45 @@
-    <main class="p-6 max-w-3xl mx-auto font-sans">
-      <h1 class="text-2xl font-bold mb-4">RxJS Live-Search (Angular 20)</h1>
+<main class="p-6 max-w-3xl mx-auto font-sans">
+  <h1 class="text-2xl font-bold mb-4">RxJS Live-Search (Angular 20)</h1>
 
-      <label class="block mb-2 text-sm">Suche</label>
-      <input
-        class="w-full px-3 py-2 border rounded mb-3"
-        type="text"
-        [formControl]="searchCtrl"
-        placeholder="z.B. phone, watch, laptop ..."
-        autofocus
-      />
+  <label class="block mb-2 text-sm">Suche</label>
+  <input
+    class="w-full px-3 py-2 border rounded mb-3"
+    type="text"
+    [formControl]="searchCtrl"
+    placeholder="z.B. phone, watch, laptop ..."
+    autofocus
+  />
 
-      <label class="inline-flex items-center gap-2 mb-4">
-        <input type="checkbox" [checked]="inStockOnly$.value" (change)="toggleInStock($event)" />
-        Nur verfügbare Produkte (stock &gt; 0)
-      </label>
+  <label class="inline-flex items-center gap-2 mb-4">
+    <input type="checkbox" [checked]="inStockOnly$.value" (change)="toggleInStock($event)" />
+    Nur verfügbare Produkte (stock &gt; 0)
+  </label>
 
-      <section *ngIf="loading()" class="text-sm text-gray-600 mb-3">Lade ...</section>
-      <section *ngIf="error()" class="text-sm text-red-600 mb-3">{{ error() }}</section>
+  <section *ngIf="loading()" class="text-sm text-gray-600 mb-3">Lade ...</section>
+  <section *ngIf="error()" class="text-sm text-red-600 mb-3">{{ error() }}</section>
 
-      <ng-container *ngIf="vm$ | async as vm">
-        <p class="text-sm text-gray-700 mb-2">
-          Ergebnisse: <strong>{{ vm.items.length }}</strong>
-        </p>
+  <ng-container *ngIf="vm$ | async as vm">
+    <p class="text-sm text-gray-700 mb-2">
+      Ergebnisse: <strong>{{ vm.items.length }}</strong>
+    </p>
 
-        <ul class="divide-y border rounded">
-          <li *ngFor="let p of vm.items" class="p-3">
-            <div class="font-medium">{{ p.title }}</div>
-            <div class="text-sm">Preis: {{ p.price | currency:'EUR':'symbol':'1.0-0' }}</div>
-            <div class="text-sm" [class.text-green-700]="p.stock > 0" [class.text-red-700]="p.stock === 0">
-              Lager: {{ p.stock }}
-            </div>
-          </li>
-        </ul>
-      </ng-container>
+    <ul class="divide-y border rounded">
+      <li *ngFor="let p of vm.items" class="p-3">
+        <div class="font-medium">{{ p.title }}</div>
+        <div class="text-sm">Preis: {{ p.price | currency : 'EUR' : 'symbol' : '1.0-0' }}</div>
+        <div
+          class="text-sm"
+          [class.text-green-700]="p.stock > 0"
+          [class.text-red-700]="p.stock === 0"
+        >
+          Lager: {{ p.stock }}
+        </div>
+      </li>
+    </ul>
+  </ng-container>
 
-      <footer class="mt-6 text-xs text-gray-500">
-        Gelernt: valueChanges, debounceTime, distinctUntilChanged, switchMap, catchError, BehaviorSubject, combineLatest, shareReplay, AsyncPipe.
-      </footer>
-    </main>
+  <footer class="mt-6 text-xs text-gray-500">
+    Gelernt: valueChanges, debounceTime, distinctUntilChanged, switchMap, catchError,
+    BehaviorSubject, combineLatest, shareReplay, AsyncPipe.
+  </footer>
+</main>
